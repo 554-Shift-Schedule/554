@@ -3,9 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0d0f14">
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -1599,38 +1596,7 @@ function saveDay() {
   document.getElementById('modalOverlay').classList.remove('open');
 }
 
-// ═══════════ INSTALL PROMPT ═══════════
-
-let deferredInstallPrompt = null;
-
-// Fires when Chrome/Samsung Internet decides app is installable (HTTPS/localhost)
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredInstallPrompt = e;
-});
-
-window.addEventListener('appinstalled', () => {
-  deferredInstallPrompt = null;
-});
-
-function openInstallModal() {
-  // If we have the native prompt available, use it directly
-  if (deferredInstallPrompt) {
-    deferredInstallPrompt.prompt();
-    deferredInstallPrompt.userChoice.then(() => {
-      deferredInstallPrompt = null;
-    });
-  } else {
-    // Show the manual step-by-step guide
-    document.getElementById('imodalOverlay').classList.add('open');
-  }
-}
-
-function closeInstallModal(e) {
-  if (e.target === document.getElementById('imodalOverlay')) {
-    document.getElementById('imodalOverlay').classList.remove('open');
-  }
-}
+// install prompt removed
 
 
 // ═══════════ WELCOME SCREEN ═══════════
