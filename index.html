@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0f1117">
+<title>554 Shift Schedule</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --panel: #171b25;
+  --panel-2: #1f2431;
+  --border: #31384a;
+  --text: #eef2ff;
+  --text-2: #98a4c7;
+  --yellow: #ffd600;
+  --yellow-border: #c9a000;
+  --blue: #2196f3;
+  --blue-border: #1565c0;
+  --green: #42d07d;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #0b0e14 0%, #111624 100%);
+  color: var(--text);
+}
+
+.wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.hero {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,.28);
+}
+
+.hero-top {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 4px solid var(--yellow);
+}
+
+.badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--yellow);
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 28px;
+}
+
+.hero h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.url-box {
+  margin: 18px 20px 0;
+  padding: 14px 16px;
+  border: 2px solid var(--yellow-border);
+  border-radius: 14px;
+  background: rgba(255,214,0,.06);
+  font-size: 14px;
+}
+
+.url-box strong {
+  display: block;
+  color: var(--text-2);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.url-box code {
+  font-size: 28px;
+  word-break: break-word;
+  color: #fff;
+}
+
+.chooser {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.22);
+}
+
+.card-a:hover { border-color: var(--yellow-border); }
+.card-b:hover { border-color: var(--blue-border); }
+
+.pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pill-a {
+  background: var(--yellow);
+  color: #111;
+}
+
+.pill-b {
+  background: var(--blue);
+  color: #fff;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.card p {
+  margin: 0 0 12px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-2);
+}
+
+.section {
+  padding: 0 20px 20px;
+}
+
+.section h3 {
+  margin: 8px 0 12px;
+  font-size: 20px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.steps {
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.steps h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.steps ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.steps li {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.note {
+  margin-top: 16px;
+  background: rgba(255,214,0,.08);
+  border: 1px solid var(--yellow-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #f6deb3;
+  font-size: 14px;
+}
+
+.tips {
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.tips ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.tips li {
+  margin: 8px 0;
+}
+
+.quick-tips {
+  margin-top: 18px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.quick-tips h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.quick-tips ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.quick-tips li {
+  margin: 8px 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 640px) {
+  .hero-top {
+    align-items: flex-start;
+  }
+
+  .url-box code {
+    font-size: 18px;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-top">
+        <div class="badge">554</div>
+        <div>
+          <h1>5-5-4 Shift Schedule App</h1>
+          <p>Choose your version below, then install it to your phone home screen.</p>
+        </div>
+      </div>
+
+      <div class="url-box">
+        <strong>App URL for coworkers</strong>
+        <code>https://554-shift-schedule.github.io/554</code>
+      </div>
+
+      <div class="chooser">
+        <a class="card card-a" href="./Team-A/">
+          <span class="pill pill-a">Team A</span>
+          <h2>554 Team A</h2>
+          <p>Original schedule version. Work days are highlighted in yellow.</p>
+          <ul>
+            <li>Shows Team A working status</li>
+            <li>Uses the original 554 rotation</li>
+            <li>Best for Team A coworkers</li>
+          </ul>
+        </a>
+
+        <a class="card card-b" href="./Team-B/">
+          <span class="pill pill-b">Team B</span>
+          <h2>554 Team B</h2>
+          <p>Reverse schedule version. Work days are highlighted in blue.</p>
+          <ul>
+            <li>Shows Team B working status</li>
+            <li>Mirrors the opposite work/off pattern</li>
+            <li>Best for Team B coworkers</li>
+          </ul>
+        </a>
+      </div>
+
+      <div class="section">
+        <h3>Install On Your Phone</h3>
+        <div class="grid-2">
+          <div class="steps">
+            <h4>Android (Chrome)</h4>
+            <ol>
+              <li>Open Chrome on your phone.</li>
+              <li>Go to the app URL.</li>
+              <li>Choose <strong>Team A</strong> or <strong>Team B</strong>.</li>
+              <li>Tap the three dots in the top-right corner.</li>
+              <li>Tap <strong>Add to Home screen</strong>.</li>
+              <li>Tap <strong>Add</strong> to confirm.</li>
+            </ol>
+          </div>
+
+          <div class="steps">
+            <h4>iPhone (Safari)</h4>
+            <ol>
+              <li>Open Safari on your iPhone.</li>
+              <li>Go to the app URL.</li>
+              <li>Choose <strong>Team A</strong> or <strong>Team B</strong>.</li>
+              <li>Tap the Share button.</li>
+              <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+              <li>Tap <strong>Add</strong> to confirm.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="note">
+          iPhone users must use Safari. Android users should use Chrome. If you pick the wrong version by mistake, reopen the main link and choose the other one.
+        </div>
+
+        <div class="quick-tips">
+          <h4>Quick Tips</h4>
+          <ul>
+            <li>Tap any day on the calendar to see shift details, mark PTO or a sick day, or add a personal note.</li>
+            <li>Tap the month name or year at the top to instantly jump to any month or year.</li>
+            <li>Tap today's date at the top of the app to jump back to the current date anytime.</li>
+            <li>Scroll down inside the app to see this month's pay date and time card submission deadline.</li>
+            <li>Your PTO, sick days, and notes are private — stored only on your device, no one else can see them.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
